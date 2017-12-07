@@ -29,7 +29,9 @@ namespace ASPLabs
                 @"Lab2\Part6.aspx",
                 @"Lab3\Part1.aspx",
                 @"Lab3\Part2.aspx",
-                @"Lab3\Part3.aspx"};
+                @"Lab3\Part3.aspx",
+                @"Lab5\Part2.aspx",
+                @"Lab5\Part3.aspx"};
 
             foreach(var lab in labs)
                 dlLabs.Items.Add(lab);
