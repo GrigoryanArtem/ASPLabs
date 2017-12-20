@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="EastHoroscope.master.cs" Inherits="lab4.EastHoroscope" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark big-font">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home.aspx">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Developer.aspx">О разработчике</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Form.aspx">Анкета</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Prediction.aspx">Предсказание</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ZodiacSign.aspx">Знак зодиака</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="content">
+            <div>
+                <div id="site-map" class="">
+                    <asp:SiteMapPath runat="server"></asp:SiteMapPath>
+                    <div class="card-header">Карта сайта</div>
+                    <div class="card-body">
+                        <asp:SiteMapDataSource runat="server" SiteMapProvider="east" ID="EastSiteMap" />
+                        <asp:TreeView DataSourceID="EastSiteMap" runat="server"></asp:TreeView>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div class="">
+                        <div class="jumbotron ">
+                            <h3>Восточный гороскоп</h3>
+                            <div>
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
+                            <img class="main-image" src="/Imgs/EastHor/east_main.jpg" />
+                            <p>
+                                Within the Four Pillars, the month is the pillar representing information about the person's parents or childhood. Many Chinese astrologers consider the month pillar to be the most important one in determining the circumstances of one's adult life.
+                                The 12 animals are also linked to traditional Chinese agricultural calendar, which runs alongside the better known lunar calendar. Instead of months, this calendar is divided into 24 two week segments known as Solar Terms. Each animal is linked to two of these solar terms for a period similar to the Western month. Unlike the 60 year lunar calendar, which can vary by as much as a month in relation to the Western calendar, the agricultural calendar varies by only one day, beginning on the Western February 3 or 4 every year. Again unlike the cycle of the lunar years, which begins with the Rat, the agricultural calendar begins with the Tiger as it is the first animal of spring. Around summer days are longer than winter days, because it occurs differences of perihelion and aphelion.
+                                As each sign is linked to a month of the solar year, it is thereby also linked to a season. Each of the elements is also linked to a season (see above), and the element that shares a season with a sign is known as that sign's fixed element. In other words, that element is believed to impart some of its characteristics to the sign concerned. The fixed element of each sign applies also to the year and hour signs, and not just the monthly sign. It is important to note that the fixed element is separate from the cycle of elements which interact with the signs in the 60-year cycle.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <p class="copyright">©Artem Grigoryan, ONU, Odesa, 2017, email artem.grigoryan.j@gmail.com</p>
+        </div>
+    </form>
+</body>
+</html>

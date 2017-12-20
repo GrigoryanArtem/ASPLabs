@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="/Home.aspx" title="Главная"  description="Главная">
+    <siteMapNode url="/EastHoroscopeForm.aspx" title="Восточный гороскоп"  description="" />
+    <siteMapNode url="/WestHoroscopeForm.aspx" title="Западный гороскоп"  description="" />
+    <siteMapNode url="/Developer.aspx" title="О разработчике"  description="" />
+    <siteMapNode url="/Form.aspx" title="Анкета"  description="" />
+    <siteMapNode url="/Prediction.aspx" title="Предсказание"  description="" />
+    <siteMapNode url="/ZodiacSign.aspx" title="Знак зодиака"  description="" />
+  </siteMapNode>
+</siteMap>

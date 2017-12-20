@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="/WestHoroscopeForm.aspx" title="Западный гороскоп"  description="">
+    <siteMapNode url="/WestHoroscopeSigns/Aquarius.aspx" title="Водолей"  description="" />
+    <siteMapNode url="/WestHoroscopeSigns/Pisces.aspx" title="Рыбы"  description="" />
+    <siteMapNode url="/WestHoroscopeSigns/Aries.aspx" title="Овен"  description="" />
+    <siteMapNode url="/WestHoroscopeSigns/Taurus.aspx" title="Телец"  description="" />
+    <siteMapNode url="/WestHoroscopeSigns/Gemini.aspx" title="Близнецы"  description="" />
+    <siteMapNode url="/WestHoroscopeSigns/Cancer.aspx" title="Рак"  description="" />
+    <siteMapNode url="/WestHoroscopeSigns/Leo.aspx" title="Лев"  description="" />
+    <siteMapNode url="/WestHoroscopeSigns/Virgo.aspx" title="Девы"  description="" />
+    <siteMapNode url="/WestHoroscopeSigns/Libro.aspx" title="Весы"  description="" />
+    <siteMapNode url="/WestHoroscopeSigns/Scorpio.aspx" title="Скорпион"  description="" />
+    <siteMapNode url="/WestHoroscopeSigns/Sagittarius.aspx" title="Стрелец"  description="" />
+    <siteMapNode url="/WestHoroscopeSigns/Capricorn.aspx" title="Козерог"  description="" />
+  </siteMapNode>
+</siteMap>

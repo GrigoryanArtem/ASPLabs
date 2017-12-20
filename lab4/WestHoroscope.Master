@@ -1,0 +1,74 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="EastHoroscope.master.cs" Inherits="lab4.EastHoroscope" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark big-font">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home.aspx">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Developer.aspx">О разработчике</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Form.aspx">Анкета</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Prediction.aspx">Предсказание</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/ZodiacSign.aspx">Знак зодиака</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="content">
+            <div id="site-map" class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+              <asp:SiteMapPath runat="server"></asp:SiteMapPath>
+              <div class="card-header">Карта сайта</div>
+              <div class="card-body">
+                <asp:SiteMapDataSource runat="server" SiteMapProvider="west" ID="WestSiteMap" />
+                <asp:TreeView DataSourceID="WestSiteMap" runat="server"></asp:TreeView>
+              </div>
+            </div>
+
+            <div class="main-content">
+                <div class="">
+                    <div class="jumbotron">
+                      <h3>Западный гороскоп</h3>
+                      <div>
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                        </asp:ContentPlaceHolder>
+                      </div>
+                      <asp:Image runat="server" CssClass="main-image" ImageUrl="/Imgs/WestHor/west_main.jpg"/>
+                      <p>Years
+                            Main article: Sexagenary cycle
+                            Within the Four Pillars, the year is the pillar representing information about the person's family background and society or relationship with their grandparents. The person's age can also be easily deduced from the sign of the person, the current sign of the year and the person's perceived age (teens, mid 20's, 40's and so on). For example, a person who is a Tiger is either 12, 24, 36 or 48 years old in 2010, the year of the Tiger. In 2011, the year of the Rabbit, that person is one year older.
+
+                            The following table shows the 60-year cycle matched up to the Western calendar for the years 1924–2043 (see Sexagenary cycle article for years 1804–2043). The sexagenary cycle begins at lichun 'about February 4' according to some astrological sources.
+                      </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <p class="copyright">©Artem Grigoryan, ONU, Odesa, 2017, email artem.grigoryan.j@gmail.com</p>
+        </div>
+    </form>
+</body>
+</html>

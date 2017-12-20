@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPLabs", "ASPLabs\ASPLabs.csproj", "{2F69411B-1721-45C3-BA4B-592C72938A30}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3.Data", "Lab3.Data\Lab3.Data.csproj", "{C792E6FA-B924-45CA-AE47-063858F3A2ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab4", "lab4\lab4.csproj", "{D0EDF0B7-A292-4B56-9B5C-33DE1E394798}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C792E6FA-B924-45CA-AE47-063858F3A2ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C792E6FA-B924-45CA-AE47-063858F3A2ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C792E6FA-B924-45CA-AE47-063858F3A2ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0EDF0B7-A292-4B56-9B5C-33DE1E394798}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0EDF0B7-A292-4B56-9B5C-33DE1E394798}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0EDF0B7-A292-4B56-9B5C-33DE1E394798}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0EDF0B7-A292-4B56-9B5C-33DE1E394798}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

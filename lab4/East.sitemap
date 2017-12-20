@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="/EastHoroscopeForm.aspx" title="Восточный гороскоп"  description="">
+    <siteMapNode url="/EastHoroscopeSigns/Rat.aspx" title="Крыса"  description="" />
+    <siteMapNode url="/EastHoroscopeSigns/BullPage.aspx" title="Бык"  description="" />
+    <siteMapNode url="/EastHoroscopeSigns/Tiger.aspx" title="Тигр"  description="" />
+    <siteMapNode url="/EastHoroscopeSigns/Rabbit.aspx" title="Кролик"  description="" />
+    <siteMapNode url="/EastHoroscopeSigns/Dragon.aspx" title="Дракон"  description="" />
+    <siteMapNode url="/EastHoroscopeSigns/Snake.aspx" title="Змея"  description="" />
+    <siteMapNode url="/EastHoroscopeSigns/Horse.aspx" title="Лошадь"  description="" />
+    <siteMapNode url="/EastHoroscopeSigns/Goat.aspx" title="Коза"  description="" />
+    <siteMapNode url="/EastHoroscopeSigns/Monkey.aspx" title="Обезьяна"  description="" />
+    <siteMapNode url="/EastHoroscopeSigns/Rooster.aspx" title="Петух"  description="" />
+    <siteMapNode url="/EastHoroscopeSigns/Dog.aspx" title="Собака"  description="" />
+    <siteMapNode url="/EastHoroscopeSigns/Pig.aspx" title="Свинья"  description="" />
+  </siteMapNode>
+</siteMap>
