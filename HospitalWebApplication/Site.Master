@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="HospitalWebApplication.Site"%>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <nav class="navbar">
+                 <div>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="Home.aspx">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="Doctors.aspx">Doctors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="Diseases.aspx">Diseases</a>
+                        </li>
+
+                        <% if (user is null) { %>
+
+                            <li class="nav-item">
+                                <a href="Login.aspx">Login</a>
+                            </li>
+
+                        <%  } else { %>
+                            <li class="nav-item">
+                                <a href="Pacients.aspx">Patients</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="Logout.aspx">Logout</a>
+                            </li>
+
+                            <% } %>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <footer>
+                <p>&copy; 2017 Artem Grigoryan</p>
+        </footer>
+    </form>
+</body>
+</html>

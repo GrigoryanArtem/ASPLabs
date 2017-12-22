@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище HospitalDataBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Disease">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiseaseBook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PacientDetailsId" Type="int" Nullable="false" />
+          <Property Name="DoctorId" Type="int" Nullable="false" />
+          <Property Name="DiseaseId" Type="int" Nullable="false" />
+          <Property Name="Advice" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OpenDate" Type="datetime" Nullable="false" />
+          <Property Name="CloseDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpecializationId" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pacient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Gender" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PacientAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PacientDetailsId" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PacientDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Specialization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DiseaseBook_Disease">
+          <End Role="Disease" Type="Self.Disease" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DiseaseBook" Type="Self.DiseaseBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disease">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DiseaseBook">
+              <PropertyRef Name="DiseaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiseaseBook_Doctor">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DiseaseBook" Type="Self.DiseaseBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DiseaseBook">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiseaseBook_PacientDetails">
+          <End Role="PacientDetails" Type="Self.PacientDetails" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DiseaseBook" Type="Self.DiseaseBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PacientDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DiseaseBook">
+              <PropertyRef Name="PacientDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctor_Specialization">
+          <End Role="Specialization" Type="Self.Specialization" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Doctor">
+              <PropertyRef Name="SpecializationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PacientAddress_PacientDetails">
+          <End Role="PacientDetails" Type="Self.PacientDetails" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PacientAddress" Type="Self.PacientAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PacientDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PacientAddress">
+              <PropertyRef Name="PacientDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PacientDetails_Pacient">
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PacientDetails" Type="Self.PacientDetails" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pacient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PacientDetails">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище HospitalDataBaseModelContainer">
+          <EntitySet Name="Disease" EntityType="Self.Disease" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiseaseBook" EntityType="Self.DiseaseBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctor" EntityType="Self.Doctor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pacient" EntityType="Self.Pacient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PacientAddress" EntityType="Self.PacientAddress" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PacientDetails" EntityType="Self.PacientDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Specialization" EntityType="Self.Specialization" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DiseaseBook_Disease" Association="Self.FK_DiseaseBook_Disease">
+            <End Role="Disease" EntitySet="Disease" />
+            <End Role="DiseaseBook" EntitySet="DiseaseBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiseaseBook_Doctor" Association="Self.FK_DiseaseBook_Doctor">
+            <End Role="Doctor" EntitySet="Doctor" />
+            <End Role="DiseaseBook" EntitySet="DiseaseBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiseaseBook_PacientDetails" Association="Self.FK_DiseaseBook_PacientDetails">
+            <End Role="PacientDetails" EntitySet="PacientDetails" />
+            <End Role="DiseaseBook" EntitySet="DiseaseBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctor_Specialization" Association="Self.FK_Doctor_Specialization">
+            <End Role="Specialization" EntitySet="Specialization" />
+            <End Role="Doctor" EntitySet="Doctor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PacientAddress_PacientDetails" Association="Self.FK_PacientAddress_PacientDetails">
+            <End Role="PacientDetails" EntitySet="PacientDetails" />
+            <End Role="PacientAddress" EntitySet="PacientAddress" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PacientDetails_Pacient" Association="Self.FK_PacientDetails_Pacient">
+            <End Role="Pacient" EntitySet="Pacient" />
+            <End Role="PacientDetails" EntitySet="PacientDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HospitalDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Disease">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DiseaseBooks" Relationship="Self.FK_DiseaseBook_Disease" FromRole="Disease" ToRole="DiseaseBook" />
+        </EntityType>
+        <EntityType Name="DiseaseBook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PacientDetailsId" Type="Int32" Nullable="false" />
+          <Property Name="DoctorId" Type="Int32" Nullable="false" />
+          <Property Name="DiseaseId" Type="Int32" Nullable="false" />
+          <Property Name="Advice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OpenDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CloseDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Disease" Relationship="Self.FK_DiseaseBook_Disease" FromRole="DiseaseBook" ToRole="Disease" />
+          <NavigationProperty Name="Doctor" Relationship="Self.FK_DiseaseBook_Doctor" FromRole="DiseaseBook" ToRole="Doctor" />
+          <NavigationProperty Name="PacientDetail" Relationship="Self.FK_DiseaseBook_PacientDetails" FromRole="DiseaseBook" ToRole="PacientDetails" />
+        </EntityType>
+        <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpecializationId" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DiseaseBooks" Relationship="Self.FK_DiseaseBook_Doctor" FromRole="Doctor" ToRole="DiseaseBook" />
+          <NavigationProperty Name="Specialization" Relationship="Self.FK_Doctor_Specialization" FromRole="Doctor" ToRole="Specialization" />
+        </EntityType>
+        <EntityType Name="Pacient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="HospitalDataBaseModel.Gender" Nullable="false" />
+          <NavigationProperty Name="PacientDetail" Relationship="Self.FK_PacientDetails_Pacient" FromRole="Pacient" ToRole="PacientDetails" />
+        </EntityType>
+        <EntityType Name="PacientAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PacientDetailsId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PacientDetail" Relationship="Self.FK_PacientAddress_PacientDetails" FromRole="PacientAddress" ToRole="PacientDetails" />
+        </EntityType>
+        <EntityType Name="PacientDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="DiseaseBooks" Relationship="Self.FK_DiseaseBook_PacientDetails" FromRole="PacientDetails" ToRole="DiseaseBook" />
+          <NavigationProperty Name="Pacient" Relationship="Self.FK_PacientDetails_Pacient" FromRole="PacientDetails" ToRole="Pacient" />
+          <NavigationProperty Name="PacientAddresses" Relationship="Self.FK_PacientAddress_PacientDetails" FromRole="PacientDetails" ToRole="PacientAddress" />
+        </EntityType>
+        <EntityType Name="Specialization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Doctors" Relationship="Self.FK_Doctor_Specialization" FromRole="Specialization" ToRole="Doctor" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DiseaseBook_Disease">
+          <End Role="Disease" Type="Self.Disease" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DiseaseBook" Type="Self.DiseaseBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disease">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DiseaseBook">
+              <PropertyRef Name="DiseaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiseaseBook_Doctor">
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DiseaseBook" Type="Self.DiseaseBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DiseaseBook">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiseaseBook_PacientDetails">
+          <End Role="PacientDetails" Type="Self.PacientDetail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DiseaseBook" Type="Self.DiseaseBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PacientDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DiseaseBook">
+              <PropertyRef Name="PacientDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Doctor_Specialization">
+          <End Role="Specialization" Type="Self.Specialization" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Doctor" Type="Self.Doctor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Doctor">
+              <PropertyRef Name="SpecializationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PacientDetails_Pacient">
+          <End Role="Pacient" Type="Self.Pacient" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PacientDetails" Type="Self.PacientDetail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Pacient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PacientDetails">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PacientAddress_PacientDetails">
+          <End Role="PacientDetails" Type="Self.PacientDetail" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PacientAddress" Type="Self.PacientAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PacientDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PacientAddress">
+              <PropertyRef Name="PacientDetailsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HospitalDataBaseEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Diseases" EntityType="Self.Disease" />
+          <EntitySet Name="DiseaseBooks" EntityType="Self.DiseaseBook" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctor" />
+          <EntitySet Name="Pacients" EntityType="Self.Pacient" />
+          <EntitySet Name="PacientAddresses" EntityType="Self.PacientAddress" />
+          <EntitySet Name="PacientDetails" EntityType="Self.PacientDetail" />
+          <EntitySet Name="Specializations" EntityType="Self.Specialization" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_DiseaseBook_Disease" Association="Self.FK_DiseaseBook_Disease">
+            <End Role="Disease" EntitySet="Diseases" />
+            <End Role="DiseaseBook" EntitySet="DiseaseBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiseaseBook_Doctor" Association="Self.FK_DiseaseBook_Doctor">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="DiseaseBook" EntitySet="DiseaseBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiseaseBook_PacientDetails" Association="Self.FK_DiseaseBook_PacientDetails">
+            <End Role="PacientDetails" EntitySet="PacientDetails" />
+            <End Role="DiseaseBook" EntitySet="DiseaseBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Doctor_Specialization" Association="Self.FK_Doctor_Specialization">
+            <End Role="Specialization" EntitySet="Specializations" />
+            <End Role="Doctor" EntitySet="Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PacientDetails_Pacient" Association="Self.FK_PacientDetails_Pacient">
+            <End Role="Pacient" EntitySet="Pacients" />
+            <End Role="PacientDetails" EntitySet="PacientDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PacientAddress_PacientDetails" Association="Self.FK_PacientAddress_PacientDetails">
+            <End Role="PacientDetails" EntitySet="PacientDetails" />
+            <End Role="PacientAddress" EntitySet="PacientAddresses" />
+          </AssociationSet>
+        </EntityContainer>
+        <EnumType Name="Gender">
+          <Member Name="Male" Value="1" />
+          <Member Name="Female" Value="0" />
+        </EnumType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище HospitalDataBaseModelContainer" CdmEntityContainer="HospitalDataBaseEntities2">
+          <EntitySetMapping Name="Diseases">
+            <EntityTypeMapping TypeName="HospitalDataBaseModel.Disease">
+              <MappingFragment StoreEntitySet="Disease">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiseaseBooks">
+            <EntityTypeMapping TypeName="HospitalDataBaseModel.DiseaseBook">
+              <MappingFragment StoreEntitySet="DiseaseBook">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PacientDetailsId" ColumnName="PacientDetailsId" />
+                <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
+                <ScalarProperty Name="DiseaseId" ColumnName="DiseaseId" />
+                <ScalarProperty Name="Advice" ColumnName="Advice" />
+                <ScalarProperty Name="OpenDate" ColumnName="OpenDate" />
+                <ScalarProperty Name="CloseDate" ColumnName="CloseDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="HospitalDataBaseModel.Doctor">
+              <MappingFragment StoreEntitySet="Doctor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SpecializationId" ColumnName="SpecializationId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacients">
+            <EntityTypeMapping TypeName="HospitalDataBaseModel.Pacient">
+              <MappingFragment StoreEntitySet="Pacient">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PacientAddresses">
+            <EntityTypeMapping TypeName="HospitalDataBaseModel.PacientAddress">
+              <MappingFragment StoreEntitySet="PacientAddress">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PacientDetailsId" ColumnName="PacientDetailsId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PacientDetails">
+            <EntityTypeMapping TypeName="HospitalDataBaseModel.PacientDetail">
+              <MappingFragment StoreEntitySet="PacientDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Specializations">
+            <EntityTypeMapping TypeName="HospitalDataBaseModel.Specialization">
+              <MappingFragment StoreEntitySet="Specialization">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HospitalDataBaseModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
